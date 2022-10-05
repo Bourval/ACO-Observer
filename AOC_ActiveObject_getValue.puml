@@ -1,18 +1,18 @@
 @startuml
-interface CapteurAsync {
-+ Future getValue()
+interface ObserverDeCapteurAsync {
++ Future<Integer> getValue()
 }
 interface Java.Future {
 
 }
-interface Java.MethodInvocation {
+interface Java.Callable {
 
 }
-class Java.Scheduler {
+class Java.SchedulerExecutorService {
 
 }
 class Canal {
-+ Future update(c: Capteur)
++ Future<Integer> update(c: Capteur)
 }
 class Afficheur {
 }
@@ -27,7 +27,7 @@ class GetValue {
 }
 
 
-CapteurAsync <|.. Canal
+ObserverDeCapteurAsync <|.. Canal
 Java.MethodInvocation <|.. GetValue
 Capteur <|.. CapteurImpl
 
@@ -35,10 +35,10 @@ note "getValue: Active Object" as N1
 Canal <.. N1 : Proxy
 Afficheur <.. N1 : Client
 Capteur <.. N1 : Servant
-CapteurAsync <.. N1 : Service
+ObserverDeCapteurAsync <.. N1 : Service
 Java.Future <.. N1 : Future
 Java.MethodInvocation <.. N1 : MI
-Java.Scheduler <.. N1 : Scheduler
+Java.SchedulerExecutorService <.. N1 : SchedulerExecutorService
 CapteurImpl <.. N1 : ConcretServant
 GetValue <.. N1 : ConcreteMI
 
